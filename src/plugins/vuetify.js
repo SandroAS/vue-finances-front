@@ -21,7 +21,7 @@ export default new Vuetify({
     themes: {
       dark: {
         primary: colors.teal.darken1,
-        secondary: colors.grey.darken1,
+        secondary: colors.grey.darken4,
         accent: colors.indigo.darken1,
         info: colors.blue,
         error: colors.pink.darken2,
