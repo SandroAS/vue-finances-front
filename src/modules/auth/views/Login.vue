@@ -181,12 +181,11 @@ export default {
     async submit() {
       this.isloading = true
       try {
-        const authData = this.isLogin
+        this.isLogin
           ? await AuthService.login(this.user)
           : await AuthService.signup(this.user)
-        console.log('AuthData: ', authData)
+        this.$router.push(this.$route.query.redirect || '/dashboard')
       } catch(error) {
-        console.error(error)
         this.error = formatError(error.message)
         this.showSnackbar = true
       } finally { this.isloading = false }
