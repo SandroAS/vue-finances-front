@@ -80,6 +80,16 @@
               {{ texts.toolbar }}
             </v-btn>
           </v-card-actions>
+
+          <v-snackbar v-model="showSnackbar" top>
+            <div class="snackbar">
+              <span>{{ error }}</span>
+              <v-btn color="pink" icon @click="showSnackbar = false">
+                <v-icon>close</v-icon>
+              </v-btn>
+            </div>
+          </v-snackbar>
+
         </v-card>
       </v-flex>
 
@@ -90,12 +100,15 @@
 <script>
 import { required, email, minLength } from 'vuelidate/lib/validators'
 import AuthService from './../services/auth-service'
+import { formatError } from '@/utils'
 
 export default {
   name: 'Login',
   data: () => ({
+    error: undefined,
     isLogin: true,
     isloading: false,
+    showSnackbar: false,
     showPassword: false,
     user: {
       name: '',
@@ -174,8 +187,18 @@ export default {
         console.log('AuthData: ', authData)
       } catch(error) {
         console.error(error)
+        this.error = formatError(error.message)
+        this.showSnackbar = true
       } finally { this.isloading = false }
     }
   }
 }
 </script>
+
+<style scoped>
+.snackbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
