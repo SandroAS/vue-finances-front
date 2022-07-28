@@ -7,6 +7,13 @@
 
           <v-toolbar color="primary" dark>
             <v-toolbar-title>{{ texts.toolbar }}</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-progress-circular
+              v-show="isloading"
+              indeterminate
+              color="white"
+              width="2"
+            ></v-progress-circular>
           </v-toolbar>
 
           <v-card-text>
@@ -88,6 +95,7 @@ export default {
   name: 'Login',
   data: () => ({
     isLogin: true,
+    isloading: false,
     showPassword: false,
     user: {
       name: '',
@@ -158,10 +166,15 @@ export default {
   },
   methods: {
     async submit() {
-      const authData = this.isLogin
-        ? await AuthService.login(this.user)
-        : await AuthService.signup(this.user)
-      console.log('AuthData: ', authData)
+      this.isloading = true
+      try {
+        const authData = this.isLogin
+          ? await AuthService.login(this.user)
+          : await AuthService.signup(this.user)
+        console.log('AuthData: ', authData)
+      } catch(error) {
+        console.error(error)
+      } finally { this.isloading = false }
     }
   }
 }
