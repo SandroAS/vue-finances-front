@@ -5,6 +5,7 @@
     :mini-variant.sync="mini"
     absolute
     temporary
+    hide-overlay
   >
     <v-list>
 
