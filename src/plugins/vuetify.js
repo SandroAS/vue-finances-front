@@ -25,6 +25,7 @@ export default new Vuetify({
         accent: colors.indigo.darken1,
         info: colors.blue,
         error: colors.pink.darken2,
+        danger: colors.pink.darken2,
         success: colors.teal.lighten1,
         warning: colors.purple.darken1
       }

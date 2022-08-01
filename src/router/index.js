@@ -32,7 +32,7 @@ router.beforeEach(async (to, from, next) => {
         await AuthService.user({ fetchPolicy: 'network-only' })
         return next()
       } catch(error) {
-        console.log('Auto Login Error: ', error)
+        console.log('%cAuto Login Error: ', 'color: cornflowerblue;', error)
         return next(loginRoute)
       }
     }

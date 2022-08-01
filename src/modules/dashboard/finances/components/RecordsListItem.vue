@@ -1,7 +1,7 @@
 <template>
   <v-list-item>
     <v-list-item-avatar>
-      <v-icon :class="[ recordIcon(record.type), 'lighten-1 white--text' ]">{{ recordIcon(record.type) }}</v-icon>
+      <v-icon :class="[ recordIconColor(record.amount), 'lighten-1 white--text' ]">{{ recordIcon(record.amount) }}</v-icon>
     </v-list-item-avatar>
 
     <v-list-item-content>
@@ -31,11 +31,11 @@ export default {
         ? 'error--text text--lighten-1'
         : 'primary--text text--lighten-1'
     },
-    recordIcon(type) {
-      return type === 'CREDIT' ? 'arrow_upward' : 'arrow_downward'
+    recordIcon(amount) {
+      return amount > 0 ? 'arrow_upward' : 'arrow_downward'
     },
-    recordIconColor(type) {
-      return type === 'CREDIT' ? 'primary' : 'error'
+    recordIconColor(amount) {
+      return amount > 0 ? 'primary' : 'danger'
     }
   }
 }
