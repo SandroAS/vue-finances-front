@@ -12,7 +12,7 @@
 
       <v-flex xs10>
         <v-toolbar-title class="text-xs-center">
-          <span>{{ currentMonth }}</span>
+          <span>{{ upperCaseFirstLetter(currentMonth) }}</span>
         </v-toolbar-title>
       </v-flex>
 
@@ -30,9 +30,11 @@
 
 <script>
 import moment from 'moment'
+import upperCaseFirstLetter from '@/mixins/uppercase-first-letter'
 
 export default {
   name: 'ToolbarByMonth',
+  mixins: [upperCaseFirstLetter],
   props: {
     format: {
       type: String

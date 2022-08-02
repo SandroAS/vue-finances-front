@@ -1,3 +1,10 @@
+const currencyFormatter = ({ locale, currency } = { locale: 'pt-BR', currency: 'BRL' }) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency
+  })
+}
+
 const errorHandler = (err, vm, info) => {
   console.error('Vue [error handler]: ', err, info)
   const jwtErrors = ['jwt malformed', 'jwt expired', 'jwt not active', 'invalid token']
@@ -25,13 +32,6 @@ const groupBy = (array, key, makeCurrentKey) => {
       ]
     }
   }, {})
-}
-
-const currencyFormatter = ({ locale, currency } = { locale: 'pt-BR', currency: 'BRL' }) => {
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency
-  })
 }
 
 export {
