@@ -1,5 +1,5 @@
 const errorHandler = (err, vm, info) => {
-  console.log('Vue [error handler]: ', err, info)
+  console.error('Vue [error handler]: ', err, info)
   const jwtErrors = ['jwt malformed', 'jwt expired', 'jwt not active', 'invalid token']
   if(jwtErrors.some(jwtError => err.message.includes(jwtError))) {
     vm.$router.push({

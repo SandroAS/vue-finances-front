@@ -1,7 +1,11 @@
 <template>
   <div>
 
-    <ToolbarByMonth/>
+    <ToolbarByMonth
+      class="mb-2"
+      format="MM-YYYY"
+      @month="changeMonth"
+    />
 
     <v-card>
 
@@ -62,6 +66,9 @@ export default {
     }
   },
   methods: {
+    changeMonth(month) {
+      console.log('Month: ', month)
+    },
     showDivider(index, object) {
       return index < Object.keys(object).length - 1
     }
