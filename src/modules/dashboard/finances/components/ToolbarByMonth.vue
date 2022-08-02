@@ -46,6 +46,9 @@ export default {
       return this.date.format('MMMM YYYY')
     }
   },
+  created() {
+    this.emit()
+  },
   methods: {
     emit() {
       this.$emit('month', this.date.format(this.format))

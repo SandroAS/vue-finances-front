@@ -67,14 +67,14 @@ export default {
   },
   methods: {
     changeMonth(month) {
-      console.log('Month: ', month)
+      this.setRecords(month)
+    },
+    async setRecords(month) {
+      this.records = await RecordsService.records({ month })
     },
     showDivider(index, object) {
       return index < Object.keys(object).length - 1
     }
-  },
-  async created() {
-    this.records = await RecordsService.records()
   }
 }
 </script>
