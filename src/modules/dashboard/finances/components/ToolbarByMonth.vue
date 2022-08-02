@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="primary">
+  <v-toolbar :color="color">
     <v-layout align-center>
 
       <v-flex xs1>
@@ -36,8 +36,15 @@ export default {
   name: 'ToolbarByMonth',
   mixins: [upperCaseFirstLetter],
   props: {
+    color: {
+      required: true,
+      type: String,
+      default: 'primary'
+    },
     format: {
-      type: String
+      required: true,
+      type: String,
+      default: 'MM YYYY'
     }
   },
   data: () => ({

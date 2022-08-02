@@ -3,6 +3,7 @@
 
     <ToolbarByMonth
       class="mb-2"
+      :color="toolbarColor"
       format="MM-YYYY"
       @month="changeMonth"
     />
@@ -75,6 +76,9 @@ export default {
     },
     totalAmount() {
       return this.records.reduce((sum, record) => sum + record.amount, 0)
+    },
+    toolbarColor() {
+      return this.totalAmount < 0 ? 'error' : 'primary'
     }
   },
   methods: {
