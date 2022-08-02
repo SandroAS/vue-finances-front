@@ -5,6 +5,7 @@
       class="mb-2"
       :color="toolbarColor"
       format="MM-YYYY"
+      :month="$route.query.month"
       @month="changeMonth"
     />
 
@@ -83,6 +84,12 @@ export default {
   },
   methods: {
     changeMonth(month) {
+      if(month !== this.$route.query.month) {
+        this.$router.push({
+          path: this.$route.path,
+          query: { month }
+        })
+      }
       this.setRecords(month)
     },
     async setRecords(month) {
@@ -90,6 +97,9 @@ export default {
     },
     showDivider(index, object) {
       return index < Object.keys(object).length - 1
+    },
+    queryParamMonth() {
+      return this.$route.query.month
     }
   }
 }
