@@ -3,7 +3,7 @@
     <v-layout align-center>
 
       <v-flex xs1>
-        <div class="text-xs-left">
+        <div class="text-left">
           <v-btn icon @click="decrement">
             <v-icon>chevron_left</v-icon>
           </v-btn>
@@ -11,13 +11,13 @@
       </v-flex>
 
       <v-flex xs10>
-        <v-toolbar-title class="text-xs-center">
+        <v-toolbar-title class="text-center">
           <span>{{ upperCaseFirstLetter(currentMonth) }}</span>
         </v-toolbar-title>
       </v-flex>
 
       <v-flex xs1>
-        <div class="text-xs-right">
+        <div class="text-right">
           <v-btn icon @click="increment">
             <v-icon>chevron_right</v-icon>
           </v-btn>
