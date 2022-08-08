@@ -44,26 +44,60 @@
                 label="Descrição"
                 prepend-icon="description"
                 type="text"
-                v-model="$v.record.description.$model"
+                v-model.trim="$v.record.description.$model"
               ></v-text-field>
 
               <v-text-field
+                v-show="showTagsInput"
                 name="tags"
                 label="Tags (separadas por vírgula)"
                 prepend-icon="label"
                 type="text"
-                v-model="record.tags"
+                v-model.trim="record.tags"
               ></v-text-field>
 
               <v-text-field
+                v-show="showNoteInput"
                 name="note"
                 label="Observação"
                 prepend-icon="note"
                 type="text"
-                v-model="record.note"
+                v-model.trim="record.note"
               ></v-text-field>
 
             </v-form>
+
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  small
+                  class="mr-3"
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="showTagsInput = !showTagsInput"
+                >
+                  <v-icon :color="color">label</v-icon>
+                </v-btn>
+              </template>
+              <span>Adicionar tags</span>
+            </v-tooltip>
+
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  small
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="showNoteInput = !showNoteInput"
+                >
+                  <v-icon :color="color">note</v-icon>
+                </v-btn>
+              </template>
+              <span>Observação</span>
+            </v-tooltip>
+
           </v-card-text>
         </v-card>
 
@@ -115,7 +149,9 @@ export default {
         description: '',
         tags: '',
         note: ''
-      }
+      },
+      showTagsInput: false,
+      showNoteInput: false
     }
   },
   validations: {
