@@ -1,19 +1,11 @@
 <template>
   <v-container text-center class="mt-8">
     <v-layout row wrap>
-      <v-flex
-        xs12
-        sm6
-        md4
-        lg4
+      <v-flex xs12 sm6 md4 lg4
       >
-        <p>Amount</p>
+        <NumericDisplay :color="color"/>
       </v-flex>
-      <v-flex
-        xs12
-        sm6
-        md8
-        lg8
+      <v-flex xs12 sm6 md8 lg8
       >
         <v-card>
           <v-card-text>
@@ -175,9 +167,11 @@ import { mapActions } from 'vuex'
 
 import AccountsService from './../services/accounts-service'
 import CategoriesService from './../services/categories-service'
+import NumericDisplay from './../components/NumericDisplay.vue'
 
 export default {
   name: 'RecordsAdd',
+  components: { NumericDisplay },
   data() {
     return {
       accounts: [],
