@@ -3,7 +3,11 @@
     <v-layout row wrap>
       <v-flex xs12 sm6 md4 lg4
       >
-        <NumericDisplay :color="color"/>
+        <NumericDisplay
+          v-model="$v.record.amount.$model"
+          :color="color"
+          :value="355.55"
+        />
       </v-flex>
       <v-flex xs12 sm6 md8 lg8
       >
@@ -251,6 +255,9 @@ export default {
     },
     log() {
       console.log('Form: ', this.record)
+    },
+    submit() {
+      console.log('teste')
     }
   }
 }
