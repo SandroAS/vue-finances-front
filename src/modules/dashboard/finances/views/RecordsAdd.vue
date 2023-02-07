@@ -173,7 +173,7 @@ import { mapActions } from 'vuex'
 import AccountsService from './../services/accounts-service'
 import CategoriesService from './../services/categories-service'
 import NumericDisplay from './../components/NumericDisplay.vue'
-import RecordsService from './../services/records-service.vue'
+import RecordsService from './../services/records-service'
 
 export default {
   name: 'RecordsAdd',
