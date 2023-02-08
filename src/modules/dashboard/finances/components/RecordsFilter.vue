@@ -28,6 +28,54 @@
             <v-icon>check</v-icon>
           </v-btn>
         </v-card-title>
+
+        <v-card-text>
+          <v-list three-line>
+
+            <v-list-item>
+              <v-list-item-title>Tipo de Lançamento</v-list-item-title>
+              <v-list-item-subtitle>
+                <v-select
+                  placeholder="Todos os Lançamentos"
+                  chips
+                  deletable-chips
+                  :items="operations"
+                  item-text="desciption"
+                  item-value="value"
+                ></v-select>
+              </v-list-item-subtitle>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-title>Conta</v-list-item-title>
+              <v-list-item-subtitle>
+                <v-select
+                  placeholder="Todos as Contas"
+                  chips
+                  deletable-chips
+                  :items="accounts"
+                  item-text="desciption"
+                  item-value="id"
+                ></v-select>
+              </v-list-item-subtitle>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-title>Categoria</v-list-item-title>
+              <v-list-item-subtitle>
+                <v-select
+                  placeholder="Todos as Categorias"
+                  chips
+                  deletable-chips
+                  :items="categories"
+                  item-text="desciption"
+                  item-value="id"
+                ></v-select>
+              </v-list-item-subtitle>
+            </v-list-item>
+
+          </v-list>
+        </v-card-text>
       </v-card>
     </v-dialog>
 
@@ -35,14 +83,40 @@
 </template>
 
 <script>
+import AccountsService from './../services/accounts-service'
+import CategoriesService from './../services/categories-service'
+
 export default {
   name: 'RecordsFilter',
   data: () => ({
-    showFilterDialog: false
+    accouts: [],
+    categories: [],
+    operations: [
+      { description: 'Receita', value: 'CREDIT' },
+      { description: 'Receita', value: 'DEBIT' }
+    ],
+    showFilterDialog: false,
+    subscriptions: []
   }),
+  created() {
+    this.setItems()
+  },
+  destroyed() {
+    this.subscriptions.forEach(s => s.unsubscribe())
+  },
   methods: {
     filter(e) {
 
+    },
+    setItems() {
+      this.subscriptions.push(
+        AccountsService.accounts()
+          .subscribe(accounts => (this.accounts = accounts))
+      )
+      this.subscriptions.push(
+        CategoriesService.categories()
+          .subscribe(categories => (this.categories = categories))
+      )
     }
   }
 }
