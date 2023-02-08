@@ -5,11 +5,14 @@
 
     <ToolbarByMonth
       class="mb-2"
-      :color="toolbarColor"
       format="MM-YYYY"
+      :color="toolbarColor"
       :month="$route.query.month"
+      :showSlot="true"
       @month="changeMonth"
-    />
+    >
+      <RecordsFilter />
+    </ToolbarByMonth>
 
     <v-card>
 
@@ -59,6 +62,7 @@ import { mergeMap } from 'rxjs/operators'
 import { groupBy } from '@/utils'
 import amountColorMixin from './../mixins/amount-color'
 import formatCurrencyMixin from '@/mixins/format-currency'
+import RecordsFilter from './RecordsFilter.vue'
 import RecordsListItem from './RecordsListItem.vue'
 import RecordsService from './../services/records-service'
 import ToolbarByMonth from './ToolbarByMonth.vue'
@@ -66,7 +70,7 @@ import TotalBalance from './TotalBalance.vue'
 
 export default {
   name: 'RecordsList',
-  components: { RecordsListItem, ToolbarByMonth, TotalBalance },
+  components: { RecordsFilter, RecordsListItem, ToolbarByMonth, TotalBalance },
   mixins: [amountColorMixin, formatCurrencyMixin],
   data: () => ({
     records: [],

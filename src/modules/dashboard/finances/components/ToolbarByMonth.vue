@@ -10,13 +10,17 @@
         </div>
       </v-flex>
 
-      <v-flex xs10>
+      <v-flex xs8 offset-xs1>
         <v-toolbar-title class="text-center">
           <span>{{ upperCaseFirstLetter(currentMonth) }}</span>
         </v-toolbar-title>
       </v-flex>
 
-      <v-flex xs1>
+      <v-flex v-if="showSlot" xs1 text-xs-right>
+        <slot />
+      </v-flex>
+
+      <v-flex xs1 :class="arrowRightClass">
         <div class="text-right">
           <v-btn icon @click="increment">
             <v-icon>chevron_right</v-icon>
@@ -50,12 +54,20 @@ export default {
       required: true,
       type: String,
       default: ''
+    },
+    shoSlot: {
+      required: true,
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
     date: undefined
   }),
   computed: {
+    arrowRightClass() {
+      return !this.showSlot ? 'offset-xs1' : ''
+    },
     currentMonth() {
       return this.date.format('MMMM YYYY')
     }
