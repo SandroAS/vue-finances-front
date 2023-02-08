@@ -66,20 +66,21 @@
                 item-value="id"
                 v-model="$v.record.accountId.$model"
               >
-                <v-list-item-content
-                  slot="prepend-item"
-                  ripple
-                  @click="add('account')"
-                >
-                  <v-list-item-action>
-                    <v-icon>add</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-title>Conta</v-list-item-title>
-                </v-list-item-content>
-                <v-divider
-                  slot="prepend-item"
-                  class="mt-2"
-                ></v-divider>
+                <template v-slot:prepend-item>
+                  <v-list-item
+                    ripple
+                    @mousedown.prevent
+                    @click="add('account')"
+                  >
+                    <v-list-item-action>
+                      <v-icon>add</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title>Conta</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-divider class="mt-2"></v-divider>
+                </template>
               </v-select>
 
               <v-select
@@ -91,20 +92,21 @@
                 item-value="id"
                 v-model="$v.record.categoryId.$model"
               >
-                <v-list-item-content
-                  slot="prepend-item"
-                  ripple
-                  @click="'category'"
-                >
-                  <v-list-item-action>
-                    <v-icon>add</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-title>Categoria</v-list-item-title>
-                </v-list-item-content>
-                <v-divider
-                  slot="prepend-item"
-                  class="mt-2"
-                ></v-divider>
+                <template v-slot:prepend-item>
+                  <v-list-item
+                    ripple
+                    @mousedown.prevent
+                    @click="add('category')"
+                  >
+                    <v-list-item-action>
+                      <v-icon>add</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title>Categoria</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-divider class="mt-2"></v-divider>
+                </template>
               </v-select>
 
               <v-text-field
