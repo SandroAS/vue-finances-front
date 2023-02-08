@@ -70,7 +70,7 @@ export default {
   mixins: [amountColorMixin, formatCurrencyMixin],
   data: () => ({
     records: [],
-    monthSubject: new Subject()
+    monthSubject$: new Subject()
   }),
   computed: {
     mappedRecords() {
@@ -99,10 +99,10 @@ export default {
           query: { month }
         })
       }
-      this.monthSubject.next({ month })
+      this.monthSubject$.next({ month })
     },
     setRecords(month) {
-      this.monthSubject
+      this.monthSubject$
         .pipe(
           mergeMap(variables => RecordsService.records(variables))
         ).subscribe(records => (this.records = records))
