@@ -196,9 +196,11 @@
           v-model="showAccountCategoryDialog"
           max-width="350px"
         >
-          <v-card>
-            <v-card-title>Account or Category</v-card-title>
-          </v-card>
+          <AccountCategoryAdd
+            v-if="showAccountCategoryDialog"
+            :entity="entity"
+            @close="showAccountCategoryDialog = false"
+          />
         </v-dialog>
 
       </v-flex>
@@ -211,6 +213,7 @@ import moment from 'moment'
 import { decimal, minLength, required } from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
 
+import AccountCategoryAdd from './../components/AccountCategoryAdd.vue'
 import AccountsService from './../services/accounts-service'
 import CategoriesService from './../services/categories-service'
 import NumericDisplay from './../components/NumericDisplay.vue'
@@ -218,7 +221,7 @@ import RecordsService from './../services/records-service'
 
 export default {
   name: 'RecordsAdd',
-  components: { NumericDisplay },
+  components: { NumericDisplay, AccountCategoryAdd },
   data() {
     return {
       accounts: [],
