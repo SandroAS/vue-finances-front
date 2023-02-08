@@ -200,6 +200,7 @@
             v-if="showAccountCategoryDialog"
             :entity="entity"
             @close="showAccountCategoryDialog = false"
+            @saved="accountCategorySaved"
           />
         </v-dialog>
 
@@ -244,7 +245,8 @@ export default {
       showAccountCategoryDialog: false,
       showDateDialog: false,
       showTagsInput: false,
-      showNoteInput: false
+      showNoteInput: false,
+      subscriptions: []
     }
   },
   validations: {
@@ -295,6 +297,10 @@ export default {
   },
   methods: {
     ...mapActions(['setTitle']),
+    accountCategorySaved(item) {
+      this.showAccountCategoryDialog = false
+      this.record[`${this.entity}Id`] = item.id
+    },
     add(entity) {
       this.showAccountCategoryDialog = true
       this.entity = entity
