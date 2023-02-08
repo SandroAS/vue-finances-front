@@ -46,16 +46,18 @@ export default {
       default: ''
     }
   },
-  data: () => ({
-    item: {
-      description: '',
-      operation: ''
-    },
-    operations: [
-      { description: 'Receita', value: 'CREDIT' },
-      { description: 'Despesa', value: 'DEBIT' }
-    ]
-  }),
+  data() {
+    return {
+      item: {
+        description: '',
+        operation: this.$route.query.type.toUpperCase()
+      },
+      operations: [
+        { description: 'Receita', value: 'CREDIT' },
+        { description: 'Despesa', value: 'DEBIT' }
+      ]
+    }
+  },
   validations() {
     const validations = {
       item: {
