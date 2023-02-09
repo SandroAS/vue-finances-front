@@ -55,7 +55,7 @@ export default {
       type: String,
       default: ''
     },
-    shoSlot: {
+    showSlot: {
       required: true,
       type: Boolean,
       default: false
