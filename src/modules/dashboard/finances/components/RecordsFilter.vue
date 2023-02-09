@@ -15,7 +15,7 @@
 
     <v-dialog
       v-model="showFilterDialog"
-      max-width="350px"
+      max-width="550px"
     >
       <v-card>
         <v-card-title>
@@ -40,7 +40,7 @@
                   chips
                   deletable-chips
                   :items="operations"
-                  item-text="desciption"
+                  item-text="description"
                   item-value="value"
                   :value="filters && filters.type"
                   @change="localFilters.type = $event"
@@ -56,7 +56,7 @@
                   chips
                   deletable-chips
                   :items="accounts"
-                  item-text="desciption"
+                  item-text="description"
                   item-value="id"
                   :value="filters && filters.accountsIds"
                   @change="localFilters.accountsIds = $event"
@@ -72,7 +72,7 @@
                   chips
                   deletable-chips
                   :items="categories"
-                  item-text="desciption"
+                  item-text="description"
                   item-value="id"
                   :value="filters && filters.categoriesIds"
                   @change="localFilters.categoriesIds = $event"
