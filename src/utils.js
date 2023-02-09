@@ -34,6 +34,21 @@ const groupBy = (array, key, makeCurrentKey) => {
   }, {})
 }
 
+const idx = (object, keyPath) => {
+  const keys = keyPath.split('.')
+  return keys.reduce(
+    (obj, current) => (obj && obj[current] !== undefined) ? obj[current] : null, object
+  )
+}
+
+const generateChartConfigs = (opts) => {
+  const { type } = opts
+
+  return {
+    type
+  }
+}
+
 const registerVuexModule = (rootStore, moduleName, store) => {
   if(!(moduleName in rootStore._modules.root._children)) {
     rootStore.registerModule(moduleName, store)
@@ -42,8 +57,9 @@ const registerVuexModule = (rootStore, moduleName, store) => {
 
 export {
   currencyFormatter,
-  groupBy,
   errorHandler,
   formatError,
+  groupBy,
+  idx,
   registerVuexModule
 }
