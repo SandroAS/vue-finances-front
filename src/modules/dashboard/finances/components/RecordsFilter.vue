@@ -103,7 +103,7 @@ export default {
     categories: [],
     operations: [
       { description: 'Receita', value: 'CREDIT' },
-      { description: 'Receita', value: 'DEBIT' }
+      { description: 'Despesa', value: 'DEBIT' }
     ],
     localFilters: {
       accountsIds: [],
