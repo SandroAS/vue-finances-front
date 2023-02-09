@@ -56,7 +56,7 @@ export default {
       default: ''
     },
     showSlot: {
-      required: true,
+      required: false,
       type: Boolean,
       default: false
     }
