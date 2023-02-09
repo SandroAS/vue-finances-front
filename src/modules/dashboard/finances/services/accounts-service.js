@@ -3,7 +3,7 @@ import { from } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import AccountsQuery from './../graphql/Accounts.gql'
-import AccountCreateMutation from './../graphql/AccountCreateMutation.gql'
+import AccountCreateMutation from './../graphql/AccountCreate.gql'
 
 const accounts = () => {
   const queryRef = apollo.watchQuery({

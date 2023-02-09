@@ -3,7 +3,7 @@ import { from } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import CategoriesQuery from './../graphql/Categories.gql'
-import CategoryCreateMutation from './../graphql/CategoryCreateMutation.gql'
+import CategoryCreateMutation from './../graphql/CategoryCreate.gql'
 
 const categories = ({ operation } = {}) => {
   const queryRef = apollo.watchQuery({
