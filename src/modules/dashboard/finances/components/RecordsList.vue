@@ -7,7 +7,7 @@
       class="mb-2"
       format="MM-YYYY"
       :color="toolbarColor"
-      :month="$route.query.month"
+      :month="month || $route.query.month"
       :showSlot="true"
       @month="changeMonth"
     >
