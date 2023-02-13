@@ -53,7 +53,7 @@ export default {
     ],
     monthSubject$: new Subject(),
     records: [],
-    subscription: []
+    subscriptions: []
   }),
   computed: {
     ...mapState('finances', ['month'])
@@ -83,6 +83,7 @@ export default {
       return new Chart(ctx, options)
     },
     setCharts() {
+      // receitas e despesas
       const chartIncomesExpensesConfigs = generateChartConfigs({
         type: 'bar',
         items: this.records,
@@ -96,11 +97,34 @@ export default {
       })
 
       if(this.chartIncomesExpenses) {
-        this.chartIncomesExpenses.data.datasets = chartIncomesExpensesConfigs
+        this.chartIncomesExpenses.data.datasets = chartIncomesExpensesConfigs.data.datasets
         this.chartIncomesExpenses.update()
       } else {
         this.chartIncomesExpenses =
           this.createChart('chartIncomesExpenses', chartIncomesExpensesConfigs)
+      }
+
+      // despesas por categoria
+      const chartCategoryExpensesConfigs = generateChartConfigs({
+        type: 'doughnut',
+        items: this.records.filter(r => r.type === 'DEBIT'),
+        keyToGroup: 'category.description',
+        keyOfValue: 'amount',
+        backgroundColors: [
+          this.$vuetify.theme.accent,
+          this.$vuetify.theme.worning,
+          this.$vuetify.theme.info,
+          this.$vuetify.theme.success
+        ]
+      })
+
+      if(this.chartCategoryExpenses) {
+        this.chartCategoryExpenses.data.datasets = chartCategoryExpensesConfigs.data.datasets
+        this.chartCategoryExpenses.data.labels = chartCategoryExpensesConfigs.data.labels
+        this.chartCategoryExpenses.update()
+      } else {
+        this.chartCategoryExpenses =
+          this.createChart('chartCategoryExpenses', chartCategoryExpensesConfigs)
       }
     },
     setRecords() {
