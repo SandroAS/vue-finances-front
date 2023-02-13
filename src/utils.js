@@ -47,18 +47,17 @@ const generateChartOptions = (type) => {
     case 'bar':
       tooltips = {
         callbacks: {
-          title () { },
-          label (tooltip, data) {
+          title() { },
+          label(tooltip, data) {
             return data.datasets[tooltip.datasetIndex].label
           }
         }
       }
       break
-
     case 'doughnut':
       tooltips = {
         callbacks: {
-          label (tooltip, data) {
+          label(tooltip, data) {
             const label = data.labels[tooltip.index]
             const value = currencyFormatter()
               .format(data.datasets[tooltip.datasetIndex].data[tooltip.index])
@@ -103,6 +102,15 @@ const generateChartData = ({ items, keyToGroup, keyOfValue, aliases, type, backg
           backgroundColor: backgroundColors[index],
           borderWidth: 0
         }))
+      }
+    case 'doughnut':
+      return {
+        datasets: [{
+          data: labels.map(label => response[label] >= 0 ? response[label] : -response[label]),
+          backgroundColor: backgroundColors,
+          borderWidth: 0
+        }],
+        labels: items.length > 0 ? labels : []
       }
   }
 }
